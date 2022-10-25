@@ -17,3 +17,5 @@ const markupGallery = galleryItems.map(({ preview, original, description }) => `
 galleryBox.innerHTML = markupGallery;
 
 new SimpleLightbox('.gallery a', { captionsData:'alt', captionDelay: 250});
+
+console.log('hi')
