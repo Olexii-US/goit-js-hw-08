@@ -14,11 +14,9 @@ formRef.addEventListener("submit", onFormSubmit);
 const formData = {};
 const formDataSend = {};
 
-
 function onFormInput(event) {
     formData[event.target.name] = event.target.value
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
-    // console.log(formData)
 }
 
 function onFormSubmit(evt) {
@@ -48,7 +46,6 @@ function savedStorageMessage() {
         Object.entries(savedObj).forEach(([name, value]) => {
             formRef.elements[name].value = value;
         })
-        console.log(Object.entries(savedObj))
     }    
 }
 
