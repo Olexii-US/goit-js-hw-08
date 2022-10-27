@@ -24,9 +24,9 @@ const STORAGE_KEY = "videoplayer-current-time";
     }
 player.on('timeupdate', throttle(timeUpdate, 1000));
     
-getStarageDate()
+getStorageData()
 
-function getStarageDate() {
+function getStorageData() {
     const restarPlayerTime = localStorage.getItem(STORAGE_KEY)
     if (restarPlayerTime) {
         setPlayerTime(restarPlayerTime)

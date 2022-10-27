@@ -22,11 +22,16 @@ function onFormInput(event) {
 }
 
 function onFormSubmit(evt) {
-    evt.preventDefault(); 
-    const submitFormData = new FormData(evt.currentTarget)
+    evt.preventDefault();
 
+        if (!emailRef.value || !messageRef.value) {
+        return alert('Please, fill in all fields')
+    }
+    
+    const submitFormData = new FormData(evt.currentTarget)
+    
     submitFormData.forEach((value, name) => {
-        formDataSend[name] = value;
+        formDataSend[name] = value;        
       });    
     console.log(formDataSend)
 
@@ -35,27 +40,25 @@ function onFormSubmit(evt) {
 } 
 
 function savedStorageMessage() {
-    const savedObj = localStorage.getItem(STORAGE_KEY)
+    let savedObj = localStorage.getItem(STORAGE_KEY)
 
     if (savedObj) {
-        const parsedData = JSON.parse(savedObj)
+        savedObj = JSON.parse(savedObj)
 
-        emailRef.value = parsedData.email
-        messageRef.value = parsedData.message
-        // console.log(emailRef.textContent)
-        // console.log(messageRef.textContent)
+        Object.entries(savedObj).forEach(([name, value]) => {
+            formRef.elements[name].value = value;
+        })
+        console.log(Object.entries(savedObj))
     }    
 }
 
+// function savedStorageMessage() {
+//     const savedObj = localStorage.getItem(STORAGE_KEY)
 
+//     if (savedObj) {
+//         const parsedData = JSON.parse(savedObj)
 
-
-
-// const savedObj = localStorage.getItem("feedback-form-state")
-// const parsedData = JSON.parse(savedObj)
-// console.log(savedObj)
-
-
-
-
-
+//         emailRef.value = parsedData.email
+//         messageRef.value = parsedData.message
+//     }    
+// }
