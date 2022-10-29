@@ -11,12 +11,16 @@ savedStorageMessage();
 formRef.addEventListener("input", throttle(onFormInput, 500));
 formRef.addEventListener("submit", onFormSubmit);
 
-const formData = {};
+let formData;
 const formDataSend = {};
 
 function onFormInput(event) {
-    formData[event.target.name] = event.target.value
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
+
+    formData = localStorage.getItem(STORAGE_KEY);
+    formData = formData ? JSON.parse(formData) : {};
+
+    formData[event.target.name] = event.target.value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function onFormSubmit(evt) {
